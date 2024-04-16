@@ -12,10 +12,12 @@ if ($lunghezza === '' || !ctype_digit($lunghezza)) {
   $error = 'Nessun parametro valido';
 }else{
   $password = generaPassword($lunghezza);
+  // qua genero la password e la passo alla sessione
   session_start();
   $_SESSION['password'] = $password;
-  header('Location: /success.php');
+  header('Location: success.php');
 }
+
 
 ?>
 
