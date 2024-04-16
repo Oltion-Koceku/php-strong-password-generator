@@ -4,6 +4,7 @@
   $lunghezza = $_GET['lunghezza'];
 
   $error = '';
+  // grazie all'if controllo se ' una striga vuota o un numero
    if ($lunghezza === '' || !ctype_digit($lunghezza)) {
     $error = 'Nessun parametro valido';
    }else{
