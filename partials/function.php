@@ -1,5 +1,5 @@
 <?php 
-function generaPassword($lunghezza) {
+function generaPassword($lunghezza, $ripetizioni) {
     // definisci i caratteri possibili per ogni categoria
     $minuscole = 'abcdefghijklmnopqrstuvwxyz';
     $maiuscole = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -15,10 +15,33 @@ function generaPassword($lunghezza) {
 
     // con uyesto ciclo for estraggo un numero e lo uso in un array
 
-    for ($i = 0; $i < $lunghezza; $i++) { 
+    if ( $ripetizioni == 'on') {
+      for ($i = 0; $i < $lunghezza; $i++) { 
+        $random = $tutti_caratteri[rand(0, $lunghezza_tutti_caratteri - 1)];
+       if (strpos($password_generata , $random)=== false) {
+         $password_generata .= $random;
+       }else{
+         $i--;
+       }
+     }
+    }else{
+      for ($i = 0; $i < $lunghezza; $i++)  { 
         $random = $tutti_caratteri[rand(0, $lunghezza_tutti_caratteri - 1)];
         $password_generata .= $random;
+      }
     }
+
+   
+
+    // for ($i = 0; $i < $lunghezza; $i++) { 
+      
+    //    $random = $tutti_caratteri[rand(0, $lunghezza_tutti_caratteri - 1)];
+    //   if (strpos($password_generata , $random)=== false) {
+    //     $password_generata .= $random;
+    //   }else{
+    //     $i--;
+    //   }
+    // }
 
     // ritorno la password
     

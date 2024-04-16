@@ -5,19 +5,21 @@
 include __DIR__ . '/partials/head.php';
 require_once __DIR__ . '/partials/function.php';
 $lunghezza = $_GET['lunghezza'];
+$ripetizione = $_GET['ripetizioni'];
 
 $error = '';
 // grazie all'if controllo se ' una striga vuota o un numero
 if ($lunghezza === '' || !ctype_digit($lunghezza)) {
   $error = 'Nessun parametro valido';
 }else{
-  $password = generaPassword($lunghezza);
+  $password = generaPassword($lunghezza, $ripetizione);
   // qua genero la password e la passo alla sessione
   session_start();
   $_SESSION['password'] = $password;
   header('Location: success.php');
 }
 
+var_dump($_GET)
 
 ?>
 
@@ -39,6 +41,11 @@ if ($lunghezza === '' || !ctype_digit($lunghezza)) {
       </div>
       <div class="bott-right">
         <input name="lunghezza" type="text" placeholder="Scrivi la lunghezza">
+        <div class="form-check form-switch">
+          <input class="form-check-input" name="ripetizioni" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Ripetizioni</label>
+        </div>
+
       </div>
     </div>
     </form>
