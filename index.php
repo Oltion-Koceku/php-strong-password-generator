@@ -1,15 +1,22 @@
 <?php 
-  include __DIR__ . '/partials/head.php';
-  include __DIR__ . '/partials/function.php';
-  $lunghezza = $_GET['lunghezza'];
 
-  $error = '';
-  // grazie all'if controllo se ' una striga vuota o un numero
-   if ($lunghezza === '' || !ctype_digit($lunghezza)) {
-    $error = 'Nessun parametro valido';
-   }else{
-    $password = generaPassword($lunghezza);
-  }
+
+
+include __DIR__ . '/partials/head.php';
+require_once __DIR__ . '/partials/function.php';
+$lunghezza = $_GET['lunghezza'];
+
+$error = '';
+// grazie all'if controllo se ' una striga vuota o un numero
+if ($lunghezza === '' || !ctype_digit($lunghezza)) {
+  $error = 'Nessun parametro valido';
+}else{
+  $password = generaPassword($lunghezza);
+  session_start();
+  $_SESSION['password'] = $password;
+  header('Location: /success.php');
+}
+
 ?>
 
 <body>
